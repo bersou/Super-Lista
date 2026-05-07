@@ -123,8 +123,10 @@ export default function App() {
   };
 
   const confirmarLimpeza = () => {
+    console.log('Limpando lista...');
     setItems([]);
     setIsModalOpen(false);
+    localStorage.removeItem('@SuperLista:items_v3');
   };
 
   const totalGeral = useMemo(() => {
@@ -149,35 +151,46 @@ export default function App() {
     })).sort((a, b) => b.total - a.total);
   }, [items, totalGeral]);
 
-  const compartilharRecibo = async () => {
+  const compartilharRecibo = () => {
+    console.log('Iniciando compartilhamento...');
+    if (!receiptRef.current) {
+      alert('Erro: Recibo não encontrado');
+      return;
+    }
     setIsGenerating(true);
+    
+    if (!window.html2canvas) {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      script.onload = () => gerarRecibo();
+      script.onerror = () => {
+        alert('Erro ao carregar biblioteca. Tente novamente.');
+        setIsGenerating(false);
+      };
+      document.head.appendChild(script);
+    } else {
+      gerarRecibo();
+    }
+  };
+
+  const gerarRecibo = async () => {
     try {
-      if (!window.html2canvas) {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-        document.head.appendChild(script);
-        await new Promise((resolve) => script.onload = resolve);
-      }
-      
       const canvas = await window.html2canvas(receiptRef.current, { 
-        useCORS: true, 
         scale: 2, 
-        backgroundColor: '#ffffff',
-        logging: false
+        backgroundColor: '#ffffff'
       });
-      
-      const imageData = canvas.toDataURL("image/png");
       
       const link = document.createElement('a');
       link.download = 'Recibo_SuperLista.png';
-      link.href = imageData;
+      link.href = canvas.toDataURL();
       link.click();
       
+      setIsReceiptOpen(false);
     } catch (err) {
-      console.error('Erro ao gerar recibo:', err);
-    } finally {
-      setIsGenerating(false);
+      console.error(err);
+      alert('Erro ao gerar recibo');
     }
+    setIsGenerating(false);
   };
 
   return (
