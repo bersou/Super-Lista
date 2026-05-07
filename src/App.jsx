@@ -150,28 +150,31 @@ export default function App() {
   }, [items, totalGeral]);
 
   const compartilharRecibo = async () => {
-    if (!window.html2canvas) return;
     setIsGenerating(true);
     try {
+      if (!window.html2canvas) {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        document.head.appendChild(script);
+        await new Promise((resolve) => script.onload = resolve);
+      }
+      
       const canvas = await window.html2canvas(receiptRef.current, { 
         useCORS: true, 
         scale: 2, 
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        logging: false
       });
-      canvas.toBlob(async (blob) => {
-        if (!blob) return;
-        const file = new File([blob], "Recibo_SuperLista.png", { type: "image/png" });
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title: 'SuperLista - Recibo' });
-        } else {
-          const link = document.createElement('a');
-          link.download = 'Recibo_SuperLista.png';
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        }
-      }, 'image/png');
+      
+      const imageData = canvas.toDataURL("image/png");
+      
+      const link = document.createElement('a');
+      link.download = 'Recibo_SuperLista.png';
+      link.href = imageData;
+      link.click();
+      
     } catch (err) {
-      console.error(err);
+      console.error('Erro ao gerar recibo:', err);
     } finally {
       setIsGenerating(false);
     }
