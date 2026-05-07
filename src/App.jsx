@@ -219,19 +219,17 @@ export default function App() {
         
         {/* HEADER */}
         <header className="bg-gradient-to-r from-[#20B2AA] via-[#1ea39b] to-[#18a090] text-white sticky top-0 z-40 shadow-lg animate-header">
-          <div className="max-w-xl mx-auto px-5 py-4 flex items-center justify-between relative overflow-hidden">
+          <div className="max-w-xl mx-auto px-4 py-4 flex items-center justify-between relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
-            <div className="flex items-center gap-4">
-              <div className="flex items-end gap-1">
-                <ShoppingCart className="w-10 h-10 text-white/90 animate-cart drop-shadow-lg" strokeWidth={2.5} />
-                <div className="relative -mb-1">
-                  <ShoppingBag className="w-7 h-7 text-white/80 animate-bounce-bag drop-shadow-md" strokeWidth={2} />
-                </div>
+            <div className="flex items-end gap-1">
+              <ShoppingCart className="w-9 h-9 text-white/90 animate-cart drop-shadow-lg" strokeWidth={2.5} />
+              <div className="relative -mb-1">
+                <ShoppingBag className="w-6 h-6 text-white/80 animate-bounce-bag drop-shadow-md" strokeWidth={2} />
               </div>
-              <div className="flex flex-col">
-                <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none">SuperLista</h1>
-                <span className="text-[10px] font-medium opacity-70 tracking-wider uppercase">Lista de Compras</span>
-              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none">SuperLista</h1>
+              <span className="text-[10px] font-medium opacity-70 tracking-wider uppercase">Lista de Compras</span>
             </div>
             <div className="flex gap-2">
               {items.length > 0 && (
