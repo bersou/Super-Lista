@@ -180,9 +180,29 @@ export default function App() {
         backgroundColor: '#ffffff'
       });
       
+      const imageData = canvas.toDataURL('image/png');
+      const blob = await (await fetch(imageData)).blob();
+      
+      const file = new File([blob], 'Recibo_SuperLista.png', { type: 'image/png' });
+      
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Recibo - SuperLista',
+            text: 'Minha lista de compras do SuperLista',
+            files: [file]
+          });
+          setIsReceiptOpen(false);
+          setIsGenerating(false);
+          return;
+        } catch (e) {
+          if (e.name !== 'AbortError') console.error('Web Share error:', e);
+        }
+      }
+      
       const link = document.createElement('a');
       link.download = 'Recibo_SuperLista.png';
-      link.href = canvas.toDataURL();
+      link.href = imageData;
       link.click();
       
       setIsReceiptOpen(false);
@@ -236,7 +256,7 @@ export default function App() {
         {/* HEADER */}
         <header className="bg-gradient-to-r from-[#20B2AA] via-[#1ea39b] to-[#18a090] text-white sticky top-0 z-40 shadow-lg animate-header">
           <div className="max-w-xl mx-auto px-4 py-4 flex items-center justify-between relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer pointer-events-none" />
             <div className="flex items-end gap-1">
               <ShoppingCart className="w-9 h-9 text-white/90 animate-cart drop-shadow-lg" strokeWidth={2.5} />
               <div className="relative -mb-1">
@@ -247,13 +267,19 @@ export default function App() {
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none">SuperLista</h1>
               <span className="text-[10px] font-medium opacity-70 tracking-wider uppercase">Lista de Compras</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 relative z-50">
               {items.length > 0 && (
                 <>
-                  <button onClick={() => setIsReceiptOpen(true)} className="p-2 bg-[#821A4F] rounded-xl shadow-md active:scale-95 transition-all">
+                  <button 
+                    onClick={() => { console.log('Abrir recibo'); setIsReceiptOpen(true); }} 
+                    className="p-2 bg-[#821A4F] rounded-xl shadow-md active:scale-95 transition-all"
+                  >
                     <FileText size={22} />
                   </button>
-                  <button onClick={() => setIsModalOpen(true)} className="p-2 bg-black/10 rounded-xl">
+                  <button 
+                    onClick={() => { console.log('Abrir modal delete'); setIsModalOpen(true); }} 
+                    className="p-2 bg-black/10 rounded-xl"
+                  >
                     <Trash2 size={22} />
                   </button>
                 </>
