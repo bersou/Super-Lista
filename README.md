@@ -82,6 +82,14 @@ Super Compras/
 - `eslint-plugin-react-refresh` ^0.5.2
 - `globals` ^17.5.0
 
-## License
+## 📄 Licença
 
-MIT
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+⭐ Se este projeto foi útil para você, deixe uma estrela!
+
+Feito com ❤️ por [bersou](https://github.com/bersou)
