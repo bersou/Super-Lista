@@ -259,9 +259,6 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer pointer-events-none" />
             <div className="flex items-end gap-1">
               <ShoppingCart className="w-9 h-9 text-white/90 animate-cart drop-shadow-lg" strokeWidth={2.5} />
-              <div className="relative -mb-1">
-                <ShoppingBag className="w-6 h-6 text-white/80 animate-bounce-bag drop-shadow-md" strokeWidth={2} />
-              </div>
             </div>
             <div className="flex flex-col items-center">
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none">SuperLista</h1>
