@@ -1,22 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#20B2AA"/>
-      <stop offset="100%" style="stop-color:#178F8A"/>
+      <stop offset="100%" style="stop-color:#138881"/>
+    </linearGradient>
+    <linearGradient id="itemGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="100%" style="stop-color:#EE5A5A"/>
+    </linearGradient>
+    <linearGradient id="itemGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ECDC4"/>
+      <stop offset="100%" style="stop-color:#3DBDB5"/>
+    </linearGradient>
+    <linearGradient id="itemGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE66D"/>
+      <stop offset="100%" style="stop-color:#FFD93D"/>
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="100" fill="url(#bg)"/>
-  <rect x="80" y="295" width="352" height="52" rx="26" fill="#FFFFFF"/>
-  <circle cx="145" cy="378" r="38" fill="#FFFFFF"/>
-  <circle cx="367" cy="378" r="38" fill="#FFFFFF"/>
-  <path d="M125 115h262l52 125H155l-30-125z" fill="#20B2AA"/>
-  <rect x="95" y="200" width="322" height="42" rx="12" fill="#FFFFFF"/>
-  <rect x="125" y="255" width="262" height="65" rx="18" fill="#FFFFFF"/>
-  <circle cx="180" cy="183" r="24" fill="#20B2AA"/>
-  <circle cx="256" cy="183" r="24" fill="#20B2AA"/>
-  <circle cx="332" cy="183" r="24" fill="#20B2AA"/>
-  <circle cx="145" cy="378" r="28" fill="#20B2AA"/>
-  <circle cx="367" cy="378" r="28" fill="#20B2AA"/>
-  <path d="M135 320h65v28a5 5 0 0 1-5 5h-55a5 5 0 0 1-5-5v-28z" fill="#20B2AA"/>
-  <path d="M377 320h65v28a5 5 0 0 1-5 5h-55a5 5 0 0 1-5-5v-28z" fill="#20B2AA"/>
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+  <rect x="72" y="288" width="368" height="56" rx="28" fill="#FFFFFF"/>
+  <circle cx="148" cy="378" r="42" fill="#FFFFFF"/>
+  <circle cx="364" cy="378" r="42" fill="#FFFFFF"/>
+  <path d="M118 100h276l58 138H152l-34-138z" fill="#FFFFFF"/>
+  <rect x="92" y="188" width="328" height="48" rx="16" fill="#FFFFFF"/>
+  <rect x="135" y="248" width="242" height="72" rx="20" fill="#FFFFFF"/>
+  <circle cx="172" cy="160" r="28" fill="url(#itemGrad1)"/>
+  <circle cx="256" cy="160" r="28" fill="url(#itemGrad2)"/>
+  <circle cx="340" cy="160" r="28" fill="url(#itemGrad3)"/>
+  <g fill="#20B2AA">
+    <circle cx="148" cy="378" r="30"/>
+    <circle cx="364" cy="378" r="30"/>
+  </g>
 </svg>
