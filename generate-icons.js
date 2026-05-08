@@ -17,4 +17,16 @@ await sharp(svgContent)
   .png()
   .toFile(join(__dirname, 'public/icon-512.png'));
 
-console.log('Icons generated successfully!');
+await sharp(svgContent)
+  .resize(512, 512)
+  .png()
+  .toFile(join(__dirname, 'public/icon.png'));
+
+const ogSvgContent = readFileSync(join(__dirname, 'public/og-image.svg'));
+
+await sharp(ogSvgContent)
+  .resize(1200, 630)
+  .png()
+  .toFile(join(__dirname, 'public/og-image.png'));
+
+console.log('Icons and OG image generated successfully!');
